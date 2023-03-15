@@ -1,6 +1,7 @@
 package com.fassi.vorwerkApp.controllers;
 
 import com.fassi.vorwerkApp.Application;
+import com.fassi.vorwerkApp.core.DialogResult;
 import com.fassi.vorwerkApp.models.Client;
 import com.fassi.vorwerkApp.models.Product;
 import com.fassi.vorwerkApp.repositories.ClientRepository;
@@ -44,25 +45,16 @@ public class ClientViewController implements Initializable {
     private TableColumn<Client, String> clientPhoneNumberColumn;
     @FXML
     private TableColumn<Client, String> clientEmailColumn;
-    //Text input
-    @FXML
-    private TextField clientFirstName;
-    @FXML
-    private TextField clientLastName;
-    @FXML
-    private TextField clientAddress;
-    @FXML
-    private TextField clientPhoneNumber;
-    @FXML
-    private TextField clientEmail;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         clientFirstNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("firstName"));
         clientLastNameColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("lastName"));
         clientAddressColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("address"));
         clientPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("phoneNumber"));
         clientEmailColumn.setCellValueFactory(new PropertyValueFactory<Client, String>("email"));
+
         clientFirstNameColumn.setText("Vorname");
         clientLastNameColumn.setText("Name");
         clientAddressColumn.setText("Adresse");
@@ -79,27 +71,92 @@ public class ClientViewController implements Initializable {
     }
 
     @FXML
-    void addClient(ActionEvent event) {
-        Client client = new Client((clientFirstName.getText()),
-                (clientLastName.getText()),
-                (clientAddress.getText()),
-                (clientPhoneNumber.getText()),
-                clientEmail.getText());
+    void addRequest(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/ClientAdd_view.fxml"));
+        Stage stage = new Stage();
+        loader.setController(new ClientAddViewController(new DialogResult<Client>() {
+            @Override
+            public void onAccept(Client result) {
+                ClientRepository clientRepository = new ClientRepository();
+                try {
+                    clientRepository.addOne(result);
+                    ObservableList<Client> clients = tableView.getItems();
+                    clients.add(result);
+                    tableView.setItems(clients);
+                    stage.close();
 
-        ClientRepository clientRepository = new ClientRepository();
-        try {
-            clientRepository.addOne(client);
-            ObservableList<Client> clients = tableView.getItems();
-            clients.add(client);
-            tableView.setItems(clients);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+            @Override
+            public void onCancel() {
+                stage.close();
+            }
+        }));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 410, 400);
+        stage.setResizable(false);
+        stage.setTitle("Kunde Hinzufügen");
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
-    void removeClient(ActionEvent event) {
+    void updateRequest(ActionEvent event) throws IOException {
+        int selectedID = tableView.getSelectionModel().getSelectedIndex();
+
+        if (selectedID >= 0) {
+            Client client = this.tableView.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/ClientUpdate_view.fxml"));
+            Stage stage = new Stage();
+            loader.setController(
+                    new ClientUpdateViewController(
+                            new DialogResult<Client>() {
+                                @Override
+                                public void onAccept(Client result) {
+                                    ClientRepository clientRepository = new ClientRepository();
+                                    try {
+                                        clientRepository.updateOne(client.getClienId(), result);
+                                        ObservableList<Client> clients = tableView.getItems();
+                                        List<Client> updateClients = clients.stream().map(e -> e.getClienId() == client.getClienId() ? result : e).toList();
+                                        clients.clear();
+                                        clients.addAll(updateClients);
+                                        tableView.setItems(clients);
+                                        stage.close();
+
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancel() {
+                                    stage.close();
+                                }
+                            }, client)
+            );
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 410, 400);
+            stage.setResizable(false);
+            stage.setTitle("Kunde Hinzufügen");
+            stage.setScene(scene);
+            stage.show();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Fehler");
+            alert.setHeaderText("kein Kunde ausgewählt!");
+            alert.setContentText("kunde auswählen bitte ☺");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void removeRequest(ActionEvent event) {
         int selectedID = tableView.getSelectionModel().getSelectedIndex();
 
         if (selectedID >= 0) {
@@ -122,28 +179,10 @@ public class ClientViewController implements Initializable {
     }
 
     @FXML
-    void updateClient(ActionEvent event) {
-        int selectedID = tableView.getSelectionModel().getSelectedIndex();
-
-        if (selectedID >= 0) {
-            Client client = this.tableView.getSelectionModel().getSelectedItem();
-            
-
-        } else {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Fehler");
-            alert.setHeaderText("kein Kunde ausgewählt!");
-            alert.setContentText("kunde auswählen bitte ☺");
-            alert.showAndWait();
-        }
-
-    }
-
-    @FXML
     void goBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(Application.class.getResource("view/Home_view.fxml"));
-        Scene scene = new Scene(root, 600, 450);
+        Scene scene = new Scene(root, 400, 450);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         stage.setTitle("HandelsvertreterApp");

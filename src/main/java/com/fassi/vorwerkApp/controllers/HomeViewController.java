@@ -28,7 +28,7 @@ public class HomeViewController {
     private void goToClientSpace(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         Parent root = loader.load(Application.class.getResource("view/Client_view.fxml"));
-        Scene scene = new Scene(root, 810, 430);
+        Scene scene = new Scene(root, 850, 450);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         stage.setTitle("HomeView");

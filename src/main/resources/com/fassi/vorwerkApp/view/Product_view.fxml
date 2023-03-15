@@ -1,55 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="440.0" prefWidth="622.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fassi.vorwerkApp.controllers.ProductViewController">
+<AnchorPane prefHeight="440.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fassi.vorwerkApp.controllers.ProductViewController">
     <children>
-        <TableView fx:id="tableView" layoutX="222.0" layoutY="109.0" prefHeight="233.0" prefWidth="349.0">
+        <TableView fx:id="tableView" layoutX="40.0" layoutY="106.0" prefHeight="234.0" prefWidth="550.0">
             <columns>
-                <TableColumn fx:id="productNameColumn" prefWidth="69.0" text="Name" />
-                <TableColumn fx:id="productPriceColumn" prefWidth="66.0" text="Preis" />
-                <TableColumn fx:id="productAvailabilityColumn" prefWidth="101.0" text="Verfügbarkeit" />
-            <TableColumn fx:id="productTypeColumn" prefWidth="112.0" text="Produktkategorie" />
+                <TableColumn fx:id="productNameColumn" prefWidth="213.60001754760742" text="Name" />
+                <TableColumn fx:id="productPriceColumn" prefWidth="75.20001220703125" text="Preis" />
+                <TableColumn fx:id="productAvailabilityColumn" prefWidth="100.00006103515625" text="Verfügbarkeit" />
+            <TableColumn fx:id="productTypeColumn" prefWidth="171.99990844726562" text="Produktkategorie" />
             </columns>
         </TableView>
-        <VBox layoutX="32.0" layoutY="126.0" prefHeight="189.0" prefWidth="152.0" spacing="5.0">
-            <children>
-                <Text fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-                <TextField fx:id="productName" prefHeight="25.0" prefWidth="183.0" />
-                <Text fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="Preis" />
-                <TextField fx:id="productPrice" prefHeight="25.0" prefWidth="194.0" />
-                <Text fill="GREEN" layoutX="10.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Verfügbarkeit" />
-                <TextField fx:id="productAvailability" />
-                <Text fill="GREEN" layoutX="10.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkt auswählen" />
-            <ComboBox fx:id="productType" prefHeight="25.0" prefWidth="152.0">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:id="mixerProduct" fx:value="Mixer" />
-                            <String fx:id="staubsaugerProduct" fx:value="Staubsauger" />
-                        </FXCollections>
-                    </items>
-                </ComboBox>
-            </children>
-        </VBox>
-        <Button fx:id="deleteButton" layoutX="494.0" layoutY="355.0" mnemonicParsing="false" onAction="#removeProduct" prefHeight="25.0" prefWidth="78.0" text="Löschen" textFill="GREEN" />
+        <Button fx:id="deleteButton" layoutX="513.0" layoutY="351.0" mnemonicParsing="false" onAction="#removeProduct" prefHeight="25.0" prefWidth="78.0" text="Löschen" textFill="GREEN" />
       <Text fill="GREEN" layoutX="249.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkte">
          <font>
             <Font size="31.0" />
          </font>
       </Text>
-      <Button fx:id="addButton" layoutX="69.0" layoutY="342.0" mnemonicParsing="false" onAction="#addProduct" text="Hinzufügen" textFill="GREEN" />
-      <Button fx:id="updateButton" layoutX="222.0" layoutY="355.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="78.0" text="Bearbeiten" textFill="GREEN" />
-      <Button fx:id="backButton" layoutX="555.0" layoutY="401.0" mnemonicParsing="false" onAction="#goBack" text="Zurück" textFill="GREEN" />
+      <Button fx:id="addButton" layoutX="272.0" layoutY="351.0" mnemonicParsing="false" onAction="#addProduct" text="Hinzufügen" textFill="GREEN" />
+      <Button fx:id="updateButton" layoutX="40.0" layoutY="349.0" mnemonicParsing="false" onAction="#updateProduct" prefHeight="25.0" prefWidth="78.0" text="Bearbeiten" textFill="GREEN" />
+      <Button fx:id="backButton" layoutX="557.0" layoutY="413.0" mnemonicParsing="false" onAction="#goBack" text="Zurück" textFill="GREEN" />
       <Text fill="GREEN" layoutX="38.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkt suchen" wrappingWidth="100.62890625" />
       <TextField fx:id="searchBox" layoutX="134.0" layoutY="65.0" prefHeight="25.0" prefWidth="436.0" promptText="Produkte..." />
     </children>

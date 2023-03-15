@@ -9,37 +9,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="423.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fassi.vorwerkApp.controllers.ClientViewController">
+<AnchorPane prefHeight="423.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fassi.vorwerkApp.controllers.ClientViewController">
     <children>
-        <Label layoutX="346.0" text="Kunden" textAlignment="CENTER" textFill="GREEN">
+        <Label layoutX="365.0" text="Kunden" textAlignment="CENTER" textFill="GREEN">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
-        <TableView fx:id="tableView" layoutX="186.0" layoutY="125.0" prefHeight="211.0" prefWidth="567.0">
+        <TableView fx:id="tableView" layoutX="10.0" layoutY="127.0" prefHeight="211.0" prefWidth="834.0">
             <columns>
                 <TableColumn fx:id="clientFirstNameColumn" prefWidth="102.0" text="Name" />
-                <TableColumn fx:id="clientLastNameColumn" prefWidth="107.0" text="Vorname" />
-                <TableColumn fx:id="clientAddressColumn" prefWidth="135.0" text="Adresse" />
-                <TableColumn fx:id="clientPhoneNumberColumn" prefWidth="115.0" text="Telefonnummer" />
-                <TableColumn fx:id="clientEmailColumn" prefWidth="129.0" text="Email" />
+                <TableColumn fx:id="clientLastNameColumn" prefWidth="140.79998779296875" text="Vorname" />
+                <TableColumn fx:id="clientAddressColumn" prefWidth="196.79998779296875" text="Adresse" />
+                <TableColumn fx:id="clientPhoneNumberColumn" prefWidth="122.4000244140625" text="Telefonnummer" />
+                <TableColumn fx:id="clientEmailColumn" prefWidth="270.4" text="Email" />
             </columns>
         </TableView>
-        <Button fx:id="deleteClient" layoutX="186.0" layoutY="336.0" mnemonicParsing="false" onAction="#removeClient" prefHeight="25.0" prefWidth="79.0" text="Löschen" textFill="GREEN" />
-        <Button fx:id="addClient" layoutX="51.0" layoutY="336.0" mnemonicParsing="false" onAction="#addClient" prefHeight="25.0" prefWidth="79.0" text="Hinzufügen" textFill="GREEN" />
-        <Button fx:id="changeClient" layoutX="674.0" layoutY="338.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Bearbeiten" textFill="GREEN" />
-        <Button fx:id="back" layoutX="722.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="79.0" text="Zurück" textFill="GREEN" />
-        <TextField fx:id="clientFirstName" layoutX="26.0" layoutY="134.0" prefHeight="25.0" prefWidth="131.0" />
-        <Text fill="GREEN" layoutX="25.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-        <TextField fx:id="clientLastName" layoutX="26.0" layoutY="176.0" prefHeight="25.0" prefWidth="131.0" />
-        <TextField fx:id="clientAddress" layoutX="26.0" layoutY="218.0" prefHeight="25.0" prefWidth="131.0" />
-        <TextField fx:id="clientPhoneNumber" layoutX="25.0" layoutY="261.0" prefHeight="25.0" prefWidth="131.0" />
-        <TextField fx:id="clientEmail" layoutX="25.0" layoutY="302.0" prefHeight="25.0" prefWidth="131.0" />
-        <Text fill="GREEN" layoutX="25.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Vorname" />
-        <Text fill="GREEN" layoutX="25.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Addresse" />
-        <Text fill="GREEN" layoutX="25.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Telefonnummer" wrappingWidth="95.13671875" />
-        <Text fill="GREEN" layoutX="25.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Email" />
-      <Text fill="GREEN" layoutX="186.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunden suchen" wrappingWidth="123.0" />
-      <TextField fx:id="searchBox" layoutX="272.0" layoutY="81.0" prefHeight="25.0" prefWidth="479.0" promptText="Kunde..." />
+        <Button fx:id="deleteClient" layoutX="10.0" layoutY="344.0" mnemonicParsing="false" onAction="#removeRequest" prefHeight="25.0" prefWidth="79.0" text="Löschen" textFill="GREEN" />
+        <Button fx:id="addClient" layoutX="348.0" layoutY="344.0" mnemonicParsing="false" onAction="#addRequest" prefHeight="25.0" prefWidth="79.0" text="Hinzufügen" textFill="GREEN" />
+        <Button fx:id="changeClient" layoutX="766.0" layoutY="344.0" mnemonicParsing="false" onAction="#updateRequest" prefHeight="25.0" prefWidth="79.0" text="Bearbeiten" textFill="GREEN" />
+        <Button fx:id="back" layoutX="805.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="56.0" text="Zurück" textFill="GREEN" />
+      <Text fill="GREEN" layoutX="10.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunden suchen" wrappingWidth="123.0" />
+      <TextField fx:id="searchBox" layoutX="106.0" layoutY="82.0" prefHeight="26.0" prefWidth="737.0" promptText="Kunde..." />
     </children>
 </AnchorPane>
