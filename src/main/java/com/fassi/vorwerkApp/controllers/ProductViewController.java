@@ -1,7 +1,7 @@
 package com.fassi.vorwerkApp.controllers;
 
 import com.fassi.vorwerkApp.Application;
-import com.fassi.vorwerkApp.models.Client;
+import com.fassi.vorwerkApp.core.DialogResult;
 import com.fassi.vorwerkApp.models.Product;
 import com.fassi.vorwerkApp.repositories.ClientRepository;
 import com.fassi.vorwerkApp.repositories.ProductRepository;
@@ -13,12 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -43,13 +41,8 @@ public class ProductViewController implements Initializable {
     @FXML
     private TableColumn<Product, String> productTypeColumn;
 
+
     //Text input
-    @FXML
-    private TextField productName;
-    @FXML
-    private TextField productPrice;
-    @FXML
-    private TextField productAvailability;
 
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,6 +50,7 @@ public class ProductViewController implements Initializable {
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("productPrice"));
         productAvailabilityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productAvailability"));
         productTypeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productType"));
+
         productNameColumn.setText("Name");
         productPriceColumn.setText("Preis");
         productAvailabilityColumn.setText("verfügbarkeit");
@@ -71,6 +65,150 @@ public class ProductViewController implements Initializable {
         }
     }
 
+    @FXML
+    void onRefresh(ActionEvent event) {
+        try {
+            ObservableList<Product> products = tableView.getItems();
+            products.clear();
+            products.addAll(new ProductRepository().getAll());
+            tableView.setItems(products);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void addRequest(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/ProductAdd_view.fxml"));
+        Stage stage = new Stage();
+        loader.setController(new ProductAddViewController(new DialogResult<Product>() {
+            @Override
+            public void onAccept(Product result) {
+                ProductRepository productRepository = new ProductRepository();
+                try {
+                    productRepository.addOne(result);
+                    ObservableList<Product> clients = tableView.getItems();
+                    clients.add(result);
+                    tableView.setItems(clients);
+                    stage.close();
+
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            @Override
+            public void onCancel() {
+                stage.close();
+            }
+        }));
+        Parent root = loader.load();
+        Scene scene = new Scene(root, 410, 400);
+        stage.setResizable(false);
+        stage.setTitle("Vowerk");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void updateRequest(ActionEvent event) throws IOException {
+        int selectedID = tableView.getSelectionModel().getSelectedIndex();
+
+        if (selectedID >= 0) {
+            Product product = this.tableView.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(Application.class.getResource("view/ProductUpdate_view.fxml"));
+            Stage stage = new Stage();
+            loader.setController(
+                    new ProductUpdateViewController(
+                            new DialogResult<Product>() {
+                                @Override
+                                public void onAccept(Product result) {
+                                    ProductRepository productRepository = new ProductRepository();
+
+                                    try {
+                                        productRepository.updateOne(product.getProductId(), result);
+                                        ObservableList<Product> products = tableView.getItems();
+                                        List<Product> updateProducts = products.stream().map(e -> e.getProductId() == product.getProductId() ? result : e).toList();
+                                        products.clear();
+                                        products.addAll(updateProducts);
+                                        tableView.setItems(products);
+                                        stage.close();
+
+                                    } catch (Exception e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }
+
+                                @Override
+                                public void onCancel() {
+                                    stage.close();
+                                }
+                            }, product)
+            );
+            Parent root = loader.load();
+            Scene scene = new Scene(root, 410, 400);
+            stage.setResizable(false);
+            stage.setTitle("Vorwerk");
+            stage.setScene(scene);
+            stage.show();
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Fehler");
+            alert.setHeaderText("kein Kunde ausgewählt!");
+            alert.setContentText("kunde auswählen bitte ☺");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void removeRequest(ActionEvent event) {
+        int selectedID = tableView.getSelectionModel().getSelectedIndex();
+
+        if (selectedID >= 0) {
+            Product product = this.tableView.getSelectionModel().getSelectedItem();
+            ClientRepository clientRepository = new ClientRepository();
+            try {
+                clientRepository.deleteOne(product.getProductId());
+                tableView.getItems().remove(selectedID);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Fehler");
+            alert.setHeaderText("kein Kunde ausgewählt!");
+            alert.setContentText("kunde auswählen bitte ☺");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void goBack(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(Application.class.getResource("view/Home_view.fxml"));
+        Scene scene = new Scene(root, 600, 450);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        ;
+        stage.setResizable(false);
+        stage.setTitle("Vorwerk");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+
+
+
+
+
+
+
+/*
     @FXML
     void addProduct(ActionEvent event) {
         Product product = new Product((productName.getText()),
@@ -113,9 +251,9 @@ public class ProductViewController implements Initializable {
         Scene scene = new Scene(root, 600, 450);
         Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();;
         stage.setResizable(false);
-        stage.setTitle("HandelsvertreterApp");
+        stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
     }
-
+*/
 }

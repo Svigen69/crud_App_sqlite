@@ -124,7 +124,7 @@ public class SparePartViewController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         ;
         stage.setResizable(false);
-        stage.setTitle("HandelsvertreterApp");
+        stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
     }

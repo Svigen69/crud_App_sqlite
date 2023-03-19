@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
@@ -31,7 +32,7 @@ public class HomeViewController {
         Scene scene = new Scene(root, 850, 450);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
-        stage.setTitle("HomeView");
+        stage.setTitle("Vowerk");
         stage.setScene(scene);
         stage.show();
     }
@@ -43,7 +44,7 @@ public class HomeViewController {
         Scene scene = new Scene(root, 610, 440);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
-        stage.setTitle("HomeView");
+        stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
     }
@@ -55,7 +56,7 @@ public class HomeViewController {
         Scene scene = new Scene(root, 645, 450);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
-        stage.setTitle("HomeView");
+        stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
     }

@@ -5,6 +5,8 @@ module com.fassi.vorwerk {
     requires java.sql;
     requires ormlite.jdbc;
     requires ormlite.core;
+    /*requires org.kordamp.ikonli.fontawesome;*/
+
 
 
     opens com.fassi.vorwerkApp to javafx.fxml;

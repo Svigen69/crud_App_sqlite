@@ -4,6 +4,7 @@ import com.fassi.vorwerkApp.services.SqliteServices;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -15,7 +16,8 @@ public class Application extends javafx.application.Application {
         Parent root = loader.load(getClass().getResource("view/Login_view.fxml"));
         Scene scene = new Scene(root, 600, 450);
         stage.setResizable(false);
-        stage.setTitle("HandelsvertreterApp");
+        stage.setTitle("Vorwerk");
+        stage.getIcons().add(new Image(Application.class.getResourceAsStream("assets/icon.png")));
         stage.setScene(scene);
         stage.show();
 

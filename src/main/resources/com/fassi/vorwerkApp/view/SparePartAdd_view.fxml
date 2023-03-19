@@ -23,6 +23,6 @@
         <TextField fx:id="sparePartAvailability" layoutX="153.0" layoutY="140.0" />
         <Text fill="GREEN" layoutX="43.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produktkategorie" />
         <Button layoutX="126.0" layoutY="210.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="84.0" text="Hinzufügen" textFill="GREEN" />
-      <ComboBox layoutX="152.0" layoutY="173.0" prefWidth="150.0" />
+      <ComboBox fx:id="sparePartType" layoutX="152.0" layoutY="173.0" prefWidth="150.0" />
     </children>
 </AnchorPane>

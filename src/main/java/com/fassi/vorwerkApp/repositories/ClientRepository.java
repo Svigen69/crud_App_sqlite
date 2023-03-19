@@ -55,6 +55,7 @@ public class ClientRepository implements CrudRepository<Client> {
     @Override
     public Client updateOne(int id, Client entity) throws Exception {
         Client entity_U = this.getOne(id);
+        entity.setClienId((entity_U).getClienId());
         ClientRepository.clientDao.update(entity);
         return entity;
     }

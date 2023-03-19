@@ -98,7 +98,7 @@ public class ClientViewController implements Initializable {
         Parent root = loader.load();
         Scene scene = new Scene(root, 410, 400);
         stage.setResizable(false);
-        stage.setTitle("Kunde Hinzufügen");
+        stage.setTitle("Vowerk");
 
         stage.setScene(scene);
         stage.show();
@@ -141,7 +141,7 @@ public class ClientViewController implements Initializable {
             Parent root = loader.load();
             Scene scene = new Scene(root, 410, 400);
             stage.setResizable(false);
-            stage.setTitle("Kunde Hinzufügen");
+            stage.setTitle("Vorwerk");
             stage.setScene(scene);
             stage.show();
 
@@ -185,7 +185,7 @@ public class ClientViewController implements Initializable {
         Scene scene = new Scene(root, 400, 450);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
-        stage.setTitle("HandelsvertreterApp");
+        stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
     }
