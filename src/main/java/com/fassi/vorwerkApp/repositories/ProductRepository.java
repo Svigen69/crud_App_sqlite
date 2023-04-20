@@ -6,9 +6,14 @@ import com.fassi.vorwerkApp.models.Product;
 import com.fassi.vorwerkApp.services.SqliteServices;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.table.TableUtils;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductRepository implements CrudRepository<Product> {
 
@@ -48,5 +53,10 @@ public class ProductRepository implements CrudRepository<Product> {
         Product entity = this.getOne(id);
         ProductRepository.productDao.delete(entity);
         return entity;
+    }
+
+    public List<Product> search(String pattern) throws SQLException {
+      return ProductRepository.productDao.query((PreparedQuery<Product>) ProductRepository.productDao.queryBuilder().where().like("Name", "%" + pattern + "%").prepare());
+
     }
 }

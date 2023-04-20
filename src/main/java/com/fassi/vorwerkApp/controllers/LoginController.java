@@ -33,6 +33,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    username.setText("Fassi");
+    password.setText("123456");
 
     }
 
@@ -43,7 +45,7 @@ public class LoginController implements Initializable {
 
                 isConnected.setText("username und passwort sind richtig");
                 FXMLLoader loader = new FXMLLoader();
-                Parent root = loader.load(Application.class.getResource("view/Home_view.fxml"));
+                Parent root = loader.load(Application.class.getResource("view/app_home_view.fxml"));
                 Scene scene = new Scene(root, 500, 450);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 

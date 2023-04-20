@@ -4,22 +4,44 @@ import com.fassi.vorwerkApp.enumerations.EMeetingType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Date;
+
 @DatabaseTable(tableName = "Termine")
 public class Meeting {
     @DatabaseField(generatedId = true, columnName = "id")
     private int id;
-    @DatabaseField(columnName = "datum", canBeNull = false)
+    @DatabaseField(columnName = "date", canBeNull = false)
     private long date;
-    @DatabaseField(columnName = "notiz", canBeNull = false)
+    @DatabaseField(columnName = "note", canBeNull = false)
     private String note;
-    @DatabaseField(columnName = "client_id",foreign = true, foreignAutoRefresh = true )
+    @DatabaseField(columnName = "client_id", foreign = true, foreignAutoRefresh = true)
     private Client client;
-    @DatabaseField(columnName = "product_id",foreign = true, foreignAutoRefresh = true )
+    @DatabaseField(columnName = "product_id", foreign = true, foreignAutoRefresh = true)
     private Product product;
     @DatabaseField(columnName = "type", canBeNull = false)
     private EMeetingType type;
 
     public Meeting() {
+    }
+
+    public String getProductName() {
+        return this.product.getName();
+    }
+
+    public String getStringDate() {
+        return new Date(this.date).toString();
+    }
+
+    public String getClientFullName() {
+        return this.client.getFullName();
+    }
+
+    public Meeting(long date, Client client, Product product, EMeetingType type, String note) {
+        this.date = date;
+        this.client = client;
+        this.product = product;
+        this.type = type;
+        this.note = note;
     }
 
     public Meeting(int id, long date, Client client, Product product, EMeetingType type, String note) {

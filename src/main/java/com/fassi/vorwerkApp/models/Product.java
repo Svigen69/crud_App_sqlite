@@ -1,91 +1,103 @@
 package com.fassi.vorwerkApp.models;
 
-import com.fassi.vorwerkApp.enumerations.EProductCategorie;
+import com.fassi.vorwerkApp.enumerations.EProductCategory;
 import com.fassi.vorwerkApp.enumerations.EProductType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "Produkte")
 public class Product {
-    @DatabaseField(generatedId = true, columnName = "ID")
-    private int productId;
+    @DatabaseField(generatedId = true, columnName = "id")
+    private int id;
     @DatabaseField(columnName = "Name", canBeNull = false)
-    private String productName;
-    @DatabaseField(columnName = "Preis", canBeNull = false)
-    private double productPrice;
-    @DatabaseField(columnName = "Verfügbarkeit", canBeNull = false)
-    private int productAvailability;
-    @DatabaseField(columnName = "ProduktKategorie", canBeNull = false)
-    private EProductCategorie productCategorie;
-    @DatabaseField(columnName = "ProduktTyp", canBeNull = false)
-    private EProductType productType;
+    private String name;
+    @DatabaseField(columnName = "price", canBeNull = false)
+    private double price;
+    @DatabaseField(columnName = "quantity", canBeNull = false)
+    private int quantity;
+    @DatabaseField(columnName = "category", canBeNull = false)
+    private EProductCategory category;
+    @DatabaseField(columnName = "type", canBeNull = false)
+    private EProductType type;
 
-    public Product(int productId, String productName, double productPrice, int productAvailability, EProductType productType, EProductCategorie productCategorie) {
-        this.productId = productId;
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productAvailability = productAvailability;
-        this.productType = productType;
-        this.productCategorie = productCategorie;
+    public Product( String name, double price, int quantity, EProductCategory category, EProductType type) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+        this.type = type;
     }
 
 
-    public Product(String productName, double productPrice, int productAvailability, EProductType productType, EProductCategorie productCategorie) {
-        this.productName = productName;
-        this.productPrice = productPrice;
-        this.productAvailability = productAvailability;
-        this.productType = productType;
-        this.productCategorie = productCategorie;
+    public Product(int id, String name, double price, int quantity, EProductCategory category, EProductType type) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.category = category;
+        this.type = type;
     }
 
     public Product() {
     }
 
-    public EProductType getProductType() {
-        return productType;
+    public int getId() {
+        return id;
     }
 
-    public void setProductType(EProductType productType) {
-        this.productType = productType;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public EProductCategorie getProductCategorie() {
-        return productCategorie;
+    public String getName() {
+        return name;
     }
 
-    public void setProductCategorie(EProductCategorie productCategorie) {
-        this.productCategorie = productCategorie;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getProductId() {
-        return productId;
+    public double getPrice() {
+        return price;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getProductName() {
-        return productName;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public double getProductPrice() {
-        return productPrice;
+    public EProductCategory getCategory() {
+        return category;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
+    public void setCategory(EProductCategory category) {
+        this.category = category;
     }
 
-    public int getProductAvailability() {
-        return productAvailability;
+    public EProductType getType() {
+        return type;
     }
 
-    public void setProductAvailability(int productAvailability) {
-        this.productAvailability = productAvailability;
+    public void setType(EProductType type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", category=" + category +
+                ", type=" + type +
+                '}';
     }
 }

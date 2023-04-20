@@ -34,7 +34,7 @@ public class MeetingRepository implements CrudRepository<Meeting> {
         return MeetingRepository.meetingDao.queryForId(String.valueOf(id));
     }
 
-    public List<Meeting> findBy(String firstName, String lastName) throws SQLException {
+    public List<Meeting> findBy(final String firstName,final String lastName) throws SQLException {
         Map<String, Object> map = new HashMap<>();
         map.put("Vorname", firstName);
         map.put("Nachname", lastName);
@@ -47,13 +47,13 @@ public class MeetingRepository implements CrudRepository<Meeting> {
 
 
     @Override
-    public Meeting addOne(Meeting entity) throws Exception {
+    public Meeting addOne(final Meeting entity) throws Exception {
         MeetingRepository.meetingDao.create(entity);
         return entity;
     }
 
     @Override
-    public Meeting updateOne(int id, Meeting entity) throws Exception {
+    public Meeting updateOne(final int id, Meeting entity) throws Exception {
         Meeting entity_U = this.getOne(id);
         entity.setId((entity_U).getId());
         MeetingRepository.meetingDao.update(entity);
@@ -61,10 +61,15 @@ public class MeetingRepository implements CrudRepository<Meeting> {
     }
 
     @Override
-    public Meeting deleteOne(int id) throws Exception {
+    public Meeting deleteOne(final int id) throws Exception {
         Meeting entity = this.getOne(id);
         MeetingRepository.meetingDao.delete(entity);
         return entity;
     }
 
+    public List<Meeting> getAllByClient(final Client client) throws SQLException {
+        final Meeting meeting = new Meeting();
+        meeting.setClient(client);
+        return MeetingRepository.meetingDao.queryForMatching(meeting);
+    }
 }

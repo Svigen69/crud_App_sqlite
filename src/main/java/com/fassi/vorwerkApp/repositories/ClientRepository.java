@@ -5,6 +5,7 @@ import com.fassi.vorwerkApp.models.Client;
 import com.fassi.vorwerkApp.services.SqliteServices;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.table.TableUtils;
 
 import java.sql.SQLException;
@@ -13,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public class ClientRepository implements CrudRepository<Client> {
+    private static Dao<Client, String> clientDao = null;
+
     static private SqliteServices sqliteServices;
 
     public static void init() throws Exception {
@@ -20,7 +23,9 @@ public class ClientRepository implements CrudRepository<Client> {
         TableUtils.createTableIfNotExists(SqliteServices.getConnectionSource(), Client.class);
     }
 
-    private static Dao<Client, String> clientDao = null;
+    public List<Client> search(String pattern) throws Exception {
+        return ClientRepository.clientDao.query((PreparedQuery<Client>) ClientRepository.clientDao.queryBuilder().where().like("firstName", "%" + pattern + "%").or().like("lastName", "%" + pattern + "%").prepare());
+    }
 
     @Override
     public List<Client> getAll() throws Exception {
@@ -52,8 +57,8 @@ public class ClientRepository implements CrudRepository<Client> {
 
     @Override
     public Client updateOne(int id, Client entity) throws Exception {
-        Client entity_U = this.getOne(id);
-        entity.setClienId((entity_U).getClienId());
+        Client old = this.getOne(id);
+        entity.setId(old.getId());
         ClientRepository.clientDao.update(entity);
         return entity;
     }

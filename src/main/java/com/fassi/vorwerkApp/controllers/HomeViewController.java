@@ -28,10 +28,11 @@ public class HomeViewController {
     @FXML
     private void goToClientSpace(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(Application.class.getResource("view/Client_view.fxml"));
-        Scene scene = new Scene(root, 850, 450);
+        Parent root = loader.load(Application.class.getResource("view/clients/user_clients_view.fxml"));
+        Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
+        stage.getIcons().add(new Image(Application.class.getResourceAsStream("assets/icon.png")));
         stage.setTitle("Vowerk");
         stage.setScene(scene);
         stage.show();
@@ -40,21 +41,10 @@ public class HomeViewController {
     @FXML
     private void goToProductSpace(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(Application.class.getResource("view/Product_view.fxml"));
-        Scene scene = new Scene(root, 610, 440);
+        Parent root = loader.load(Application.class.getResource("view/products/user_products_view.fxml"));
+        Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        stage.setTitle("Vorwerk");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    private void goToSpareParts(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(Application.class.getResource("view/SparePart_view.fxml"));
-        Scene scene = new Scene(root, 645, 450);
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.getIcons().add(new Image(Application.class.getResourceAsStream("assets/icon.png")));
         stage.setResizable(false);
         stage.setTitle("Vorwerk");
         stage.setScene(scene);
@@ -64,10 +54,11 @@ public class HomeViewController {
     @FXML
     private void goToCalender(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(Application.class.getResource("view/Calendar_view.fxml"));
-        Scene scene = new Scene(root, 800, 650);
+        Parent root = loader.load(Application.class.getResource("view/meets/user_clients_meets_calendar_view.fxml"));
+        Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
+        stage.getIcons().add(new Image(Application.class.getResourceAsStream("assets/icon.png")));
         stage.setTitle("Vorwerk");
         stage.setScene(scene);
         stage.show();
