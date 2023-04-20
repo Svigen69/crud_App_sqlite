@@ -61,5 +61,18 @@ public class HomeViewController {
         stage.show();
     }
 
+    @FXML
+    private void goToCalender(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(Application.class.getResource("view/Calendar_view.fxml"));
+        Scene scene = new Scene(root, 800, 650);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.setTitle("Vorwerk");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
 }
 

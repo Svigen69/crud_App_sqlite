@@ -2,8 +2,9 @@ package com.fassi.vorwerkApp.controllers;
 
 import com.fassi.vorwerkApp.Application;
 import com.fassi.vorwerkApp.core.DialogResult;
+import com.fassi.vorwerkApp.enumerations.EProductCategorie;
+import com.fassi.vorwerkApp.enumerations.EProductType;
 import com.fassi.vorwerkApp.models.Product;
-import com.fassi.vorwerkApp.repositories.ClientRepository;
 import com.fassi.vorwerkApp.repositories.ProductRepository;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,8 +27,6 @@ public class ProductViewController implements Initializable {
 
     @FXML
     private TableView<Product> tableView;
-    @FXML
-    private ComboBox productType;
 
     //Columns
     @FXML
@@ -39,7 +38,10 @@ public class ProductViewController implements Initializable {
     @FXML
     private TableColumn<Product, Integer> productAvailabilityColumn;
     @FXML
-    private TableColumn<Product, String> productTypeColumn;
+    private TableColumn<Product, EProductCategorie> productCategorieColumn;
+    @FXML
+    private TableColumn<Product, EProductType> productTypeColumn;
+
 
 
     //Text input
@@ -49,12 +51,15 @@ public class ProductViewController implements Initializable {
         productNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productName"));
         productPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("productPrice"));
         productAvailabilityColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("productAvailability"));
-        productTypeColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("productType"));
+        productCategorieColumn.setCellValueFactory(new PropertyValueFactory<Product, EProductCategorie>("productCategorie"));
+        productTypeColumn.setCellValueFactory(new PropertyValueFactory<Product, EProductType>("productType"));
+
 
         productNameColumn.setText("Name");
         productPriceColumn.setText("Preis");
         productAvailabilityColumn.setText("verfügbarkeit");
-        productTypeColumn.setText("Produktkategorie");
+        productCategorieColumn.setText("Kategorie");
+        productTypeColumn.setText("Typ");
         try {
             ObservableList<Product> products = tableView.getItems();
             products.addAll(new ProductRepository().getAll());
@@ -170,9 +175,9 @@ public class ProductViewController implements Initializable {
 
         if (selectedID >= 0) {
             Product product = this.tableView.getSelectionModel().getSelectedItem();
-            ClientRepository clientRepository = new ClientRepository();
+            ProductRepository productRepository = new ProductRepository();
             try {
-                clientRepository.deleteOne(product.getProductId());
+                productRepository.deleteOne(product.getProductId());
                 tableView.getItems().remove(selectedID);
             } catch (Exception e) {
                 throw new RuntimeException(e);

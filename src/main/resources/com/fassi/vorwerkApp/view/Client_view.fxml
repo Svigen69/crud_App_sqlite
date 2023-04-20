@@ -31,5 +31,6 @@
         <Button fx:id="back" layoutX="805.0" layoutY="394.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="56.0" text="Zurück" textFill="GREEN" />
       <Text fill="GREEN" layoutX="10.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunden suchen" wrappingWidth="123.0" />
       <TextField fx:id="searchBox" layoutX="106.0" layoutY="82.0" prefHeight="26.0" prefWidth="737.0" promptText="Kunde..." />
+      <Button layoutX="194.0" layoutY="344.0" mnemonicParsing="false" onAction="#showClientMeetings" text="Termine" />
     </children>
 </AnchorPane>

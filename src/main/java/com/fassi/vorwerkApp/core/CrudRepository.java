@@ -1,8 +1,5 @@
 package com.fassi.vorwerkApp.core;
 
-import com.fassi.vorwerkApp.models.Product;
-import com.fassi.vorwerkApp.models.SparePart;
-
 import java.util.List;
 
 public interface CrudRepository<T> {

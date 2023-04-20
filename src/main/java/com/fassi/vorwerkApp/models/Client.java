@@ -85,4 +85,8 @@ public class Client {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getFullName(){
+        return this.lastName+" "+this.firstName;
+    }
 }

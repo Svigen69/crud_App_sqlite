@@ -177,7 +177,18 @@ public class ClientViewController implements Initializable {
             alert.showAndWait();
         }
     }
+    @FXML
+    void showClientMeetings(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = loader.load(Application.class.getResource("view/ClientMeetings_view.fxml"));
+        Scene scene = new Scene(root, 600, 450);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        stage.setTitle("Vorwerk");
+        stage.setScene(scene);
+        stage.show();
 
+    }
     @FXML
     void goBack(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -189,5 +200,7 @@ public class ClientViewController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }
 

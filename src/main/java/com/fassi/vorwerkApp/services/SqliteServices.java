@@ -1,18 +1,14 @@
 package com.fassi.vorwerkApp.services;
 
-import com.fassi.vorwerkApp.models.Client;
-import com.fassi.vorwerkApp.models.Product;
-import com.fassi.vorwerkApp.models.SparePart;
+
 import com.fassi.vorwerkApp.repositories.ClientRepository;
+import com.fassi.vorwerkApp.repositories.MeetingRepository;
 import com.fassi.vorwerkApp.repositories.ProductRepository;
-import com.fassi.vorwerkApp.repositories.SparePartRepository;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import com.j256.ormlite.support.ConnectionSource;
-import com.j256.ormlite.table.TableUtils;
 
 public class SqliteServices {
     private static ConnectionSource connectionSource = null;
@@ -29,7 +25,7 @@ public class SqliteServices {
             SqliteServices.connectionSource = new JdbcConnectionSource("jdbc:sqlite:" + ressourceString);
             ClientRepository.init();
             ProductRepository.init();
-            SparePartRepository.init();
+            MeetingRepository.init();
         }
     }
 

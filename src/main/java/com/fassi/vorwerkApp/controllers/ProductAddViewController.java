@@ -1,6 +1,8 @@
 package com.fassi.vorwerkApp.controllers;
 
 import com.fassi.vorwerkApp.core.DialogResult;
+import com.fassi.vorwerkApp.enumerations.EProductCategorie;
+import com.fassi.vorwerkApp.enumerations.EProductType;
 import com.fassi.vorwerkApp.models.Product;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +18,8 @@ public class ProductAddViewController {
     @FXML
     private ComboBox productType;
     @FXML
+    private ComboBox productCategorie;
+    @FXML
     private TextField productName;
     @FXML
     private TextField productPrice;
@@ -27,7 +31,8 @@ public class ProductAddViewController {
         Product product = new Product((productName.getText()),
                 (Double.parseDouble(productPrice.getText())),
                 (Integer.parseInt(productAvailability.getText())),
-                (productType.getSelectionModel().getSelectedItem().toString()));
+                this.productType.getSelectionModel().getSelectedIndex()>0? EProductType.ErsatzTeil:EProductType.Produkt,
+                this.productCategorie.getSelectionModel().getSelectedIndex()>0? EProductCategorie.STAUBSAUGER:EProductCategorie.MIXER);
         this.dialogResult.onAccept(product);
     }
     @FXML

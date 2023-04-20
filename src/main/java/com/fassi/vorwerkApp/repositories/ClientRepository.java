@@ -2,8 +2,6 @@ package com.fassi.vorwerkApp.repositories;
 
 import com.fassi.vorwerkApp.core.CrudRepository;
 import com.fassi.vorwerkApp.models.Client;
-import com.fassi.vorwerkApp.models.Product;
-import com.fassi.vorwerkApp.models.SparePart;
 import com.fassi.vorwerkApp.services.SqliteServices;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
