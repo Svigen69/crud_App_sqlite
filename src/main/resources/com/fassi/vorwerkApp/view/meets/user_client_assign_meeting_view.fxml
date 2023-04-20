@@ -36,8 +36,8 @@
       <ComboBox fx:id="meetingType" layoutX="622.0" layoutY="173.0" prefHeight="26.0" prefWidth="150.0">
          <items>
             <FXCollections fx:factory="observableArrayList">
-               <String fx:id="productTypeComboBoxProduct" fx:value="Sur site" />
-               <String fx:id="productTypeComboBoxSparePart" fx:value="Par telephone" />
+               <String fx:id="productTypeComboBoxProduct" fx:value="Vor Ort" />
+               <String fx:id="productTypeComboBoxSparePart" fx:value="Telefonisch" />
             </FXCollections>
          </items>
       </ComboBox>
