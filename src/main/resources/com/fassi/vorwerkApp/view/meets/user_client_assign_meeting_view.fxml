@@ -61,8 +61,8 @@
             <TableColumn fx:id="productNameColumn" prefWidth="202.39998626708984" text="Name" />
             <TableColumn fx:id="productPriceColumn" prefWidth="88.0" text="Preis" />
             <TableColumn fx:id="productAvailabilityColumn" prefWidth="133.5999755859375" text="Verfügbarkeit" />
-            <TableColumn fx:id="productCategorieColumn" prefWidth="214.4000244140625" text="Produktkategorie" />
-            <TableColumn fx:id="productTypeColumn" minWidth="0.0" prefWidth="123.20000000000005" text="ProduktTyp" />
+            <TableColumn fx:id="productCategorieColumn" prefWidth="175.99996948242188" text="Produktkategorie" />
+            <TableColumn fx:id="productTypeColumn" minWidth="0.0" prefWidth="163.20001220703125" text="ProduktTyp" />
          </columns>
       </TableView>
       <Text fx:id="meetingDateValidation" fill="RED" layoutX="624.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" />
