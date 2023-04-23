@@ -36,8 +36,11 @@
          </font></Button>
         <Button fx:id="changeClient" layoutX="691.0" layoutY="81.0" mnemonicParsing="false" onAction="#updateRequest" prefHeight="25.0" prefWidth="79.0" text="Bearbeiten" textFill="GREEN" />
         <Button fx:id="back" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#goBack" prefHeight="25.0" prefWidth="56.0" text="&lt;--" textFill="GREEN" />
-      <Text fill="GREEN" layoutX="10.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunden suchen" wrappingWidth="123.0" />
-      <TextField fx:id="searchTextField" layoutX="106.0" layoutY="82.0" prefHeight="26.0" prefWidth="471.0" promptText="Kunde..." />
+      <Text fill="GREEN" layoutX="10.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kunden suchen" wrappingWidth="123.0">
+         <font>
+            <Font size="14.0" />
+         </font></Text>
+      <TextField fx:id="searchTextField" layoutX="117.0" layoutY="81.0" prefHeight="26.0" prefWidth="471.0" promptText="Kunde suchen..." />
       <Button layoutX="784.0" layoutY="81.0" mnemonicParsing="false" onAction="#showClientMeetings" text="Termine" textFill="GREEN" />
       <Line endX="735.0" layoutX="115.0" layoutY="128.0" startX="-100.0" stroke="GREEN" />
       <Line endX="4.0" endY="54.0" layoutX="677.0" layoutY="52.0" startX="4.0" startY="30.0" stroke="GREEN" />

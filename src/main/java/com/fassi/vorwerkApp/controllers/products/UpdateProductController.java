@@ -27,7 +27,7 @@ public class UpdateProductController implements Initializable {
     @FXML
     private Text productNameTextFieldValidation;
     @FXML
-    private Spinner<Double> productPriceSpinner;
+    private TextField productPriceSpinner;
     @FXML
     private Text productPriceSpinnerValidation;
     @FXML
@@ -69,7 +69,7 @@ public class UpdateProductController implements Initializable {
         this.productQuantitySpinner.setEditable(true);
         this.productQuantitySpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10000, 0));
         this.productQuantitySpinner.getEditor().setTextFormatter(priceFormatter);
-        this.productPriceSpinner.setValueFactory(new SpinnerValueFactory.DoubleSpinnerValueFactory(this.product.getPrice(), 100.00, 0.00));
+
     }
 
     private boolean validate() {
@@ -79,7 +79,7 @@ public class UpdateProductController implements Initializable {
             this.productNameTextFieldValidation.setText("Produkname erforderlich!");
         } else this.productNameTextFieldValidation.setText("");
 
-        if (this.productPriceSpinner.getValue() <= 0) {
+        if (Double.parseDouble(this.productPriceSpinner.getText())<= 0) {
             isValid = false;
             this.productPriceSpinnerValidation.setText("Produktpreis erfoerderlich!");
         } else this.productPriceSpinnerValidation.setText("");
@@ -94,7 +94,7 @@ public class UpdateProductController implements Initializable {
     @FXML
     void onAccept(ActionEvent event) {
         if (this.validate())
-            this.dialogResult.onAccept(new Product(productNameTextField.getText(), productPriceSpinner.getValue(), productQuantitySpinner.getValue(), this.productCategoryComboBox.getSelectionModel().getSelectedIndex() > 0 ? EProductCategory.STAUBSAUGER : EProductCategory.MIXER, this.productTypeComboBox.getSelectionModel().getSelectedIndex() > 0 ? EProductType.ErsatzTeil : EProductType.Produkt));
+            this.dialogResult.onAccept(new Product(productNameTextField.getText(),Double.parseDouble(this.productPriceSpinner.getText()), productQuantitySpinner.getValue(), this.productCategoryComboBox.getSelectionModel().getSelectedIndex() > 0 ? EProductCategory.STAUBSAUGER : EProductCategory.MIXER, this.productTypeComboBox.getSelectionModel().getSelectedIndex() > 0 ? EProductType.ErsatzTeil : EProductType.Produkt));
 
     }
 

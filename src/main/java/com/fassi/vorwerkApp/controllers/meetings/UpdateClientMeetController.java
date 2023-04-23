@@ -49,6 +49,8 @@ public class UpdateClientMeetController implements Initializable {
     private TableColumn<Product, EProductType> productTypeColumn;
 
     private DialogResult<Meeting> dialogResult;
+    @FXML
+    private TextField searchTextField;
 
     public UpdateClientMeetController(Meeting meeting, DialogResult<Meeting> dialogResult) {
         this.meeting = meeting;
@@ -77,6 +79,7 @@ public class UpdateClientMeetController implements Initializable {
         this.meetingType.getSelectionModel().selectFirst();
         this.loadProducts();
 
+        this.searchTextField.textProperty().addListener((observable, oldValue, newValue) -> search(newValue));
     }
 
     private void loadProducts() {
@@ -86,6 +89,18 @@ public class UpdateClientMeetController implements Initializable {
             products.addAll(new ProductRepository().getAll());
             this.productsTableView.setItems(products);
 
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void search(String pattern) {
+        if (pattern.length() == 0)
+            this.loadProducts();
+        else try {
+            ObservableList<Product> products = this.productsTableView.getItems();
+            products.clear();
+            products.addAll(new ProductRepository().search(pattern));
+            this.productsTableView.setItems(products);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

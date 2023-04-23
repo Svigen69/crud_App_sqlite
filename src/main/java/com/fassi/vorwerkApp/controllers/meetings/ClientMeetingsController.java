@@ -5,8 +5,10 @@ import com.fassi.vorwerkApp.controllers.clients.AddClientController;
 import com.fassi.vorwerkApp.core.DialogResult;
 import com.fassi.vorwerkApp.models.Client;
 import com.fassi.vorwerkApp.models.Meeting;
+import com.fassi.vorwerkApp.models.Product;
 import com.fassi.vorwerkApp.repositories.ClientRepository;
 import com.fassi.vorwerkApp.repositories.MeetingRepository;
+import com.fassi.vorwerkApp.repositories.ProductRepository;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +35,8 @@ import java.util.stream.Collectors;
 public class ClientMeetingsController implements Initializable {
 
     private Client client;
+    @FXML
+    private TableView<Product> tableView;
 
     @FXML
     private Text clientFullNameText;
@@ -202,9 +206,32 @@ public class ClientMeetingsController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Vorwerk");
-            alert.setHeaderText("Meet selection");
-            alert.setContentText("Actual meet no selected for update !");
+            alert.setHeaderText("Termin auswählen bitte!");
+            alert.setContentText("Termin auswähen um zu bearbeiten bitte ☺");
             alert.showAndWait();
+        }
+    }
+    private void loadProducts() {
+        try {
+            ObservableList<Product> products = tableView.getItems();
+            products.clear();
+            products.addAll(new ProductRepository().getAll());
+            tableView.setItems(products);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void search(String pattern) {
+        if (pattern.length() == 0)
+            this.loadProducts();
+        else try {
+            ObservableList<Product> clients = tableView.getItems();
+            clients.clear();
+            clients.addAll(new ProductRepository().search(pattern));
+            tableView.setItems(clients);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -219,7 +246,7 @@ public class ClientMeetingsController implements Initializable {
 
     @FXML
     void onCancelMeet(ActionEvent event) throws Exception {
-       if(this.confirm("Delete meet","Vorwerk","Are u sure ?")) {
+       if(this.confirm("Termin Stornieren","Vorwerk","Sicher?")) {
             new MeetingRepository().deleteOne(actualClientMeetsTableView.getSelectionModel().getSelectedItem().getId());
             loadMeets();
         }

@@ -227,8 +227,8 @@ public class ClientsController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Vorwerk");
-            alert.setHeaderText("Warning");
-            alert.setContentText("Invalid client selection");
+            alert.setHeaderText("kein Kunde ausgewählt!");
+            alert.setContentText("kunde auswählen bitte ☺");
             alert.showAndWait();
         }
 

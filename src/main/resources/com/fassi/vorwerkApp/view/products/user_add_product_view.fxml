@@ -45,7 +45,7 @@
          </items>
       </ComboBox>
       <Line endX="199.0" layoutX="114.0" layoutY="288.0" startX="-100.0" stroke="GREEN" />
-      <Spinner fx:id="productPriceSpinner" editable="true" layoutX="185.0" layoutY="158.0" prefHeight="25.0" prefWidth="122.0" />
+      <TextField fx:id="productPriceSpinner" editable="true" layoutX="185.0" layoutY="158.0" prefHeight="25.0" prefWidth="122.0" />
       <Spinner fx:id="productQuantitySpinner" editable="true" layoutX="24.0" layoutY="158.0">
          <valueFactory>
             <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="0.1" initialValue="5.0" max="10.0" min="0.0" />

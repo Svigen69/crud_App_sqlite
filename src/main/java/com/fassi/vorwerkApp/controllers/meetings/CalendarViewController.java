@@ -128,7 +128,7 @@ public class CalendarViewController implements Initializable {
                 });
                 break;
             }
-            Text text = new Text(MeetingActivities.get(k).getClient().getFullName() + " " + new Date(MeetingActivities.get(k).getDate()).toLocaleString());
+            Text text = new Text(MeetingActivities.get(k).getClient().getFullName());
             MeetingActivityBox.getChildren().add(text);
             text.setOnMouseClicked(mouseEvent -> {
                 //On Text clicked
@@ -138,7 +138,7 @@ public class CalendarViewController implements Initializable {
         MeetingActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
         MeetingActivityBox.setMaxWidth(rectangleWidth * 0.8);
         MeetingActivityBox.setMaxHeight(rectangleHeight * 0.65);
-        MeetingActivityBox.setStyle("-fx-background-color:GRAY");
+        MeetingActivityBox.setStyle("-fx-background-color:Grey");
         stackPane.getChildren().add(MeetingActivityBox);
     }
 
@@ -146,15 +146,15 @@ public class CalendarViewController implements Initializable {
         Map<Integer, List<Meeting>> MeetingActivityMap = new HashMap<>();
 
         for (Meeting activity : MeetingActivities) {
-            int activityDate = new Date(activity.getDate()).getMonth();
-            if (!MeetingActivityMap.containsKey(activityDate)) {
-                MeetingActivityMap.put(activityDate, List.of(activity));
+            Date activityDate = new Date(activity.getDate());
+            if (!MeetingActivityMap.containsKey(activityDate.getMonth())) {
+                MeetingActivityMap.put(activityDate.getMonth(), List.of(activity));
             } else {
-                List<Meeting> OldListByDate = MeetingActivityMap.get(activityDate);
+                List<Meeting> OldListByDate = MeetingActivityMap.get(activityDate.getMonth());
 
                 List<Meeting> newList = new ArrayList<>(OldListByDate);
                 newList.add(activity);
-                MeetingActivityMap.put(activityDate, newList);
+                MeetingActivityMap.put(activityDate.getMonth(), newList);
             }
         }
         return MeetingActivityMap;

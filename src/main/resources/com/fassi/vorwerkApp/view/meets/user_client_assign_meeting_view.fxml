@@ -8,12 +8,13 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="813.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fill="GREEN" layoutX="317.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Termin Hinzufügen" wrappingWidth="156.53662109375">
          <font>
@@ -30,8 +31,8 @@
             <Font size="15.0" />
          </font>
       </Text>
-      <Button layoutX="696.0" layoutY="537.0" mnemonicParsing="false" onAction="#onAccept" text="Bestätigen" textFill="GREEN" />
-      <Button layoutX="602.0" layoutY="537.0" mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" textFill="RED" />
+      <Button layoutX="697.0" layoutY="614.0" mnemonicParsing="false" onAction="#onAccept" text="Bestätigen" textFill="GREEN" />
+      <Button layoutX="600.0" layoutY="614.0" mnemonicParsing="false" onAction="#onCancel" text="Abbrechen" textFill="RED" />
       <DatePicker fx:id="meetingDate" layoutX="622.0" layoutY="100.0" prefHeight="26.0" prefWidth="150.0" />
       <ComboBox fx:id="meetingType" layoutX="622.0" layoutY="173.0" prefHeight="26.0" prefWidth="150.0">
          <items>
@@ -49,14 +50,14 @@
       <TextArea fx:id="meetingNote" layoutX="34.0" layoutY="100.0" prefHeight="104.0" prefWidth="552.0" />
       <Line endX="12.20001220703125" endY="-6.0" layoutX="589.0" layoutY="99.0" startX="12.199951171875" startY="100.0" stroke="GREEN" />
       <Line endX="639.0" layoutX="133.0" layoutY="227.0" startX="-100.0" stroke="GREEN" />
-      <Text fill="GREEN" layoutX="34.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkt" wrappingWidth="56.53674316406256">
+      <Text fill="GREEN" layoutX="34.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkte" wrappingWidth="56.53674316406256">
          <font>
             <Font size="14.0" />
          </font>
       </Text>
-      <Line endX="626.4000244140625" layoutX="144.0" layoutY="525.0" startX="-100.0" stroke="GREEN" />
+      <Line endX="626.4000244140625" layoutX="143.0" layoutY="602.0" startX="-110.20000457763672" stroke="GREEN" />
       <Button layoutX="29.0" layoutY="25.0" mnemonicParsing="false" text="&lt;--" textFill="GREEN" />
-      <TableView fx:id="productsTableView" layoutX="33.0" layoutY="268.0" prefHeight="244.0" prefWidth="740.0">
+      <TableView fx:id="productsTableView" layoutX="32.0" layoutY="344.0" prefHeight="244.0" prefWidth="740.0">
          <columns>
             <TableColumn fx:id="productNameColumn" prefWidth="202.39998626708984" text="Name" />
             <TableColumn fx:id="productPriceColumn" prefWidth="88.0" text="Preis" />
@@ -66,5 +67,11 @@
          </columns>
       </TableView>
       <Text fx:id="meetingDateValidation" fill="RED" layoutX="624.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <TextField fx:id="searchTextField" layoutX="157.0" layoutY="300.0" prefHeight="26.0" prefWidth="614.0" promptText="Produkt suchen..." />
+      <Text fill="GREEN" layoutX="37.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Produkte suchen" wrappingWidth="107.20001068115243">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
